@@ -1,0 +1,15 @@
+  <h2>show</h2>
+  <table border="1px solid">
+    <td>gtin</td>
+    <td>{{m.selected_product.gtin}}</td>
+    <tr ng-repeat="(key, val) in m.selected_product">
+      <td ng-if="key!=='gtin'">{{val.name}}:</td>
+      <td ng-if="key!=='photos' && key!=='gtin'" ng-bind="val.value"></td>
+      <td ng-if="key==='photos'">
+        <div style="float:left;" ng-repeat="photo in val.value">
+          <img width="80px" src="{{photo}}" />
+        </div>
+      </td>
+    </tr>
+  </table>
+  <a ng-href="#/products/edit/{{m.selected_product.gtin}}">Edit</a>

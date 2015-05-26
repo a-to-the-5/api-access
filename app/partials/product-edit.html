@@ -1,0 +1,22 @@
+  <h2>Update</h2>
+  <form novalidate class="simple-form">
+    <table>
+      <tr ng-repeat="(key, val) in m.selected_product">
+        <td ng-if="key!=='gtin'">{{val.name}}</td>
+        <td ng-if="key!=='photos' && key!='gtin'"><input type="text" ng-model="val.value"></td>
+        <td ng-if="key==='photos'">
+          <div style="float:left;" ng-repeat="photo in val.value">
+            <div><img width="80px" src="{{photo}}" /></div>
+            <div><a href ng-click="removePhoto(photo)">delete</a></div>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <div>Photo: </div>
+    <input type="file" file-model="m.image_file"/>
+    <a href ng-click="uploadImageToProduct()"/>Upload Image</a>
+    <br />
+    <br />
+    <a href ng-click="updateProduct(m.selected_product)"/>Save</a>
+    <a href="#/products/{{m.selected_product.gtin}}">Cancel</a>
+  </form>

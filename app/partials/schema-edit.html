@@ -1,0 +1,58 @@
+  <h2>Update Schema</h2>
+  <form novalidate class="simple-form">
+    <table border="1px solid">
+      <tr>
+        <td>category</td>
+        <td>{{m.selected_schema.category}}</td>
+      </tr>
+      <tr>
+        <td>desciption</td>
+        <td>
+          <textarea ng-model="m.selected_schema.description">
+          </textarea>
+        </td>
+      </tr>
+    </table>
+    <br />
+    Fields:
+    <table border="1px solid">
+      <thead>
+        <td>key</td>
+        <td>type</td>
+        <td>English name</td>
+        <td>English description</td>
+        <td>English possible values</td>
+        <td>Arabic possible values</td>
+        <td>Arabic description</td>
+        <td>Arabic name</td>
+      </thead>
+      <tr ng-repeat="field in m.selected_schema.schema_fields">
+        <td>{{field.key}}</td>
+        <td>
+          <input type="text" ng-model="field.type">
+        </td>
+        <td>
+          <input type="text" ng-model="field.name">
+        </td>
+        <td>
+          <input type="text" ng-model="field.description">
+        </td>
+        <td>
+          <textarea ng-model="field.possible_values" ng-list="/\n/"></textarea>
+        </td>
+        <td>
+          <textarea ng-model="field.possible_values" ng-list="/\n/"></textarea>
+        </td>
+        <td>
+          <input type="text" ng-model="field.description">
+        </td>
+        <td>
+          <input type="text" ng-model="field.name">
+        </td>
+      </tr>
+    </table>
+    <a href ng-click="addSchemaField()"/>Add Field</a>
+    <br />
+    <a href ng-click="updateSchema(m.selected_schema)"/>Save</a>
+    <a href="#/schemas/{{m.selected_schema.category}}">Cancel</a>
+  </form>

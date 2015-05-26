@@ -1,0 +1,13 @@
+  <h2>Create</h2>
+  <form novalidate class="simple-form">
+    <table>
+      <tr ng-repeat="key in m.new_product.keys track by $index">
+        <td><input type="text" ng-model="m.new_product.keys[$index]"></td>
+        <td><input type="text" ng-model="m.new_product.values[$index]"></td>
+      </tr>
+    </table>
+    <input type="submit" ng-click="addAttribute()" value="Add Field" />
+    <br />
+    <a href ng-click="createProduct()">Save</a>
+    <a href="#/products">Cancel</a>
+  </form>

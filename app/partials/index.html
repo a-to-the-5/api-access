@@ -1,0 +1,40 @@
+  <h2>Index</h2>
+  <div id="search">
+    <h3>Search</h3>
+    <span>category:</span> <input type="text" ng-model="m.category"/>
+    <span>brand:</span> <input type="text"ng-model="m.brand"/>
+    <span>supplier:</span> <input type="text"ng-model="m.supplier"/>
+    <br />
+    <span>fields:</span>
+    <br />
+    <textarea ng-model="m.fields" ng-list="/[,\n]/"></textarea>
+    <br />
+    <input type="submit" ng-click="searchProducts()" value="Search" />
+  </div>
+  <br />
+  <h3>Results</h3>
+  <table border="1px solid">
+    <thead>
+      <td ng-repeat="key in m.keys">{{key}}</td>
+      <td>Show</td>
+      <td>Edit</td>
+      <td>Delete</td>
+    </thead>
+    <tr ng-repeat="product in m.products">
+      <td ng-repeat="key in m.keys">
+        <span ng-if="key!=='photos' && key!=='gtin'">{{product[key].value}}</span>
+        <span ng-if="key==='gtin'">{{product[key]}}</span>
+        <div ng-if="key==='photos'" style="float:left;" ng-repeat="photo in product[key].value">
+          <img width="20px" src="{{photo}}" />
+        </div>
+      </td>
+      <td><a ng-href="#/products/{{product.gtin}}">Show</a></td>
+      <td><a ng-href="#/products/edit/{{product.gtin}}">Edit</a></td>
+      <td><a href="" ng-click="deleteProduct(product.gtin)">Delete</a></td>
+      <!--td><input type="submit" ng-click="editProduct(product.gtin)" value="Select" /></td>
+      <td><input type="submit" ng-click="deleteProduct(product.gtin)" value="Delete" /></td-->
+    </tr>
+  </table>
+  <a href ng-if="m.page > 1" ng-click="previousPage()">&lt&lt</a>
+  Page {{m.page}}
+  <a href ng-if="m.products && m.products !== []" ng-click="nextPage()">&gt&gt</a>
